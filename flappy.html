@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flappy Bird</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: row; /* Align elements in a row */
+            justify-content: center;
+            align-items: flex-start; /* Align items to the top */
+            height: 100vh;
+            margin: 0;
+            background-color: #70c5ce;
+            padding-top: 50px; /* Add padding to move everything down */
+        }
+        canvas {
+            border: 2px solid #000;
+            margin-left: 50px; /* Space between text and canvas */
+        }
+        #flapButton {
+            position: relative; /* Position relative to its normal position */
+            left: -500px; /* Move button to the left */
+            margin-top: 650px; /* Space between h2 and button */
+            padding: 20px 40px; /* Increased top and bottom padding for height */
+            background-color: #007BFF; /* Button background color */
+            color: #fff; /* Button text color */
+            border: none; /* No border */
+            border-radius: 30px; /* Very rounded corners */
+            cursor: pointer; /* Pointer cursor */
+            font-size: 18px; /* Font size */
+            transition: background-color 0.3s; /* Smooth transition for background color */
+        }
+        #flapButton:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+        h1 {
+            margin: 10px 0; /* Adjust margin for the header */
+            color: black; /* Change text color to black */
+            font-size: 24px; /* Adjust the font size */
+        }
+        #description {
+            margin-top: 20px; /* Space above the description */
+            color: black; /* Text color for description */
+            font-size: 18px; /* Font size for description */
+            max-width: 300px; /* Limit width of the text */
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h1>Dang it! You found the game!</h1> <!-- Header -->
+        <p id="description">This is a flappy bird styled game where you play against AI. This is simple but integrates almost everything we learned. By the way, the yellow player is you.</p>
+    </div>
+    <canvas id="gameCanvas"></canvas>
+    <button id="flapButton" onclick="location.href='rickroll.html'">Continue</button>
+    <script src="game.js"></script>
+</body>
+</html>

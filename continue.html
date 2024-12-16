@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wire Connecting Task</title>
+    <style>
+        body.continue {
+            position: relative; /* Position for the pseudo-element */
+            height: 100vh; /* Full height */
+            margin: 0; /* Remove default margin */
+            overflow: hidden; /* Prevent scrollbar during notification */
+        }
+        body::before {
+            content: ''; /* Pseudo-element for background */
+            background-image: url('images/Digital-Technology.jpg'); /* Image path */
+            background-size: cover; /* Cover the entire viewport */
+            background-position: center; /* Center the image */
+            position: absolute; /* Position behind content */
+            top: 0; left: 0; right: 0; bottom: 0; /* Cover the whole body */
+            opacity: 0.5; /* Half transparency */
+            z-index: -1; /* Send to back */
+        }
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column; /* Stack elements vertically */
+        }
+        .header-text {
+            position: fixed;
+            top: 20px; /* Position at the top */
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 24px; /* Text size */
+            color: black; /* Text color */
+            text-align: center; /* Center the text */
+            z-index: 1; /* Above other elements */
+        }
+        .task-container {
+            position: relative;
+            width: 300px; /* Width for the task area */
+            height: 400px; /* Height for the wires */
+            margin-top: 70px; /* Space for the header */
+        }
+        .wire {
+            width: 30px; /* Width of the circle */
+            height: 30px; /* Height of the circle */
+            border-radius: 50%; /* Make it circular */
+            cursor: pointer;
+            position: absolute; /* Keep absolute positioning */
+        }
+        #wire1 { background-color: red; top: 30px; left: 30px; }
+        #wire2 { background-color: blue; top: 210px; left: 30px; }
+        #wire3 { background-color: green; top: 150px; left: 30px; }
+        #wire4 { background-color: yellow; top: 90px; left: 30px; }
+        #wire5 { background-color: purple; top: 270px; left: 30px; }
+
+        .connection {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: #fff;
+            position: absolute; /* Keep absolute positioning */
+            transition: box-shadow 0.3s; /* Smooth transition for glow */
+        }
+        #connection1 { top: 210px; left: 220px; border: 2px solid yellow; }
+        #connection2 { top: 270px; left: 220px; border: 2px solid red; }
+        #connection3 { top: 90px; left: 220px; border: 2px solid blue; }
+        #connection4 { top: 150px; left: 220px; border: 2px solid green; }
+        #connection5 { top: 30px; left: 220px; border: 2px solid purple; }
+
+        .notification {
+            position: fixed; /* Fixed position to stay at the top */
+            top: 20px; /* Higher position */
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #333; /* Dark background for contrast */
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            z-index: 1;
+            display: none; /* Hidden by default */
+            color: white; /* Set text color to white */
+        }
+
+        .glow {
+            box-shadow: 0 0 20px 5px; /* Placeholder for dynamic glow */
+        }
+
+        #congratulations {
+            display: none; /* Hidden by default */
+            position: fixed;
+            top: 80%; /* Position lower on the screen */
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 15px 30px;
+            background-color: #007BFF; /* Button color changed */
+            color: white;
+            border: none;
+            border-radius: 30px; /* Rounded corners */
+            font-size: 20px;
+            cursor: pointer;
+            text-decoration: none; /* Remove underline */
+        }
+    </style>
+</head>
+<body class="continue">
+    <div class="header-text">
+        Now that you know the basics of AI, try connecting these Neural Networks!
+    </div>
+    <div class="task-container">
+        <div class="wire" id="wire1" data-color="red" draggable="true"></div>
+        <div class="wire" id="wire2" data-color="blue" draggable="true"></div>
+        <div class="wire" id="wire3" data-color="green" draggable="true"></div>
+        <div class="wire" id="wire4" data-color="yellow" draggable="true"></div>
+        <div class="wire" id="wire5" data-color="purple" draggable="true"></div>
+        
+        <div class="connection" id="connection1" data-color="yellow"></div>  <!-- Yellow -->
+        <div class="connection" id="connection2" data-color="red"></div>     <!-- Red -->
+        <div class="connection" id="connection3" data-color="blue"></div>    <!-- Blue -->
+        <div class="connection" id="connection4" data-color="green"></div>   <!-- Green -->
+        <div class="connection" id="connection5" data-color="purple"></div>  <!-- Purple -->
+        
+        <div class="notification" id="notification"></div>
+    </div>
+
+    <a href="rickroll.html">
+        <button id="congratulations">Congratulations!</button>
+    </a>
+
+    <script>
+        const wires = document.querySelectorAll('.wire');
+        const connections = document.querySelectorAll('.connection');
+        const notification = document.getElementById('notification');
+        const congratulationsButton = document.getElementById('congratulations');
+
+        wires.forEach(wire => {
+            wire.addEventListener('dragstart', dragStart);
+        });
+
+        connections.forEach(connection => {
+            connection.addEventListener('dragover', dragOver);
+            connection.addEventListener('drop', drop);
+        });
+
+        function dragStart(e) {
+            e.dataTransfer.setData('text/plain', e.target.id);
+            e.target.style.opacity = '0.1'; // Dim the wire to 0.1 while dragging
+        }
+
+        function dragOver(e) {
+            e.preventDefault(); // Allow drop
+        }
+
+        function drop(e) {
+            const wireId = e.dataTransfer.getData('text/plain');
+            const wire = document.getElementById(wireId);
+            const connectionColor = e.target.getAttribute('data-color');
+            const wireColor = wire.getAttribute('data-color');
+
+            if (connectionColor === wireColor) {
+                const glowColor = getComputedStyle(e.target).borderColor; // Get the border color
+                e.target.classList.add('glow'); // Add glow effect
+                e.target.style.boxShadow = `0 0 20px 5px ${glowColor}`; // Set glow color
+                showNotification("Correct Connection!", glowColor); // Use the same color for notification
+
+                // Remove the wire
+                wire.remove();
+
+                // Check if all wires are connected
+                if (document.querySelectorAll('.wire').length === 0) {
+                    showCongratulations();
+                }
+            } else {
+                showNotification("Incorrect Connection! Try again.", "red");
+            }
+            wire.style.opacity = '1'; // Restore opacity after drop
+        }
+
+        // Show notification
+        function showNotification(message, color) {
+            notification.textContent = message;
+            notification.style.backgroundColor = color;
+            notification.style.display = 'block'; // Make it visible
+
+            // Hide after 3 seconds
+            setTimeout(() => {
+                notification.style.display = 'none'; // Hide it again
+            }, 3000);
+        }
+
+        // Show the congratulations button
+        function showCongratulations() {
+            congratulationsButton.style.display = 'block'; // Show the button
+        }
+
+        // Reset wire opacity after drop
+        wires.forEach(wire => {
+            wire.addEventListener('dragend', () => {
+                wire.style.opacity = '1';
+            });
+        });
+    </script>
+</body>
+</html>

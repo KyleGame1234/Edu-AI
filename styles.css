@@ -1,0 +1,261 @@
+/* General Styling */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative; /* Keep this for content positioning */
+    overflow: auto; /* Allow scrolling */
+}
+
+/* Smooth Scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Background Image */
+body::before {
+    content: '';
+    position: fixed; /* Change to fixed to cover the viewport */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('images/AI.jpg'); /* Path to your image */
+    background-size: cover; /* Ensure it covers the whole area */
+    background-position: center 30%; /* Move the image down by 30% */
+    background-repeat: no-repeat; /* Prevent repeating */
+    opacity: 0.4; /* Set the transparency to 40% */
+    z-index: -1; /* Send it to the back */
+}
+
+/* Header Styling */
+header {
+    background: rgba(51, 51, 51, 0.8); /* Semi-transparent for readability */
+    color: #fff;
+    padding: 1rem;
+    width: 100%;
+    text-align: center;
+}
+
+/* Main Content Styling */
+main {
+    padding: 14rem 7rem; /* Increased top padding for more space */
+    text-align: center;
+}
+
+main h1 {
+    font-size: 36px; /* Increased font size */
+    color: #007BFF; /* Change heading color */
+    margin: 40px 0; /* Add margin for spacing */
+    font-weight: bold; /* Make it bold */
+}
+
+main h2 {
+    font-size: 24px; /* Adjusted font size for subheading */
+    color: #333; /* Change color */
+    margin: 0; /* Reset margin */
+    padding: 0; /* Reset padding */
+}
+
+/* Button Styling */
+#start-journey {
+    margin-top: 40px; /* Space between h2 and button */
+    padding: 20px 30px; /* Increased top and bottom padding for height */
+    background-color: #007BFF; /* Button background color */
+    color: #fff; /* Button text color */
+    border: none; /* No border */
+    border-radius: 30px; /* Very rounded corners */
+    cursor: pointer; /* Pointer cursor */
+    font-size: 18px; /* Font size */
+    transition: background-color 0.3s; /* Smooth transition for background color */
+}
+
+#start-journey:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+/* Navigation Bar Styling */
+nav {
+    position: fixed;
+    top: 0;
+    right: 0; /* Align to the right */
+    background-color: #333;
+    color: white;
+    display: flex;
+    justify-content: flex-end; /* Align items to the right */
+    align-items: center; /* Center items vertically */
+    padding: 15px 20px; /* Padding for spacing */
+    width: 100%; /* Full width */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Navigation Bar Item Styles */
+nav button {
+    margin-left: 20px; /* Space between items */
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 15px; /* Padding for button appearance */
+    background-color: #007BFF; /* Filled blue background */
+    border: none; /* No border */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor */
+    transition: background-color 0.3s; /* Smooth transition for background color */
+}
+
+nav button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+/* Back to Home Button Styling */
+.back-button {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 15px;
+    background-color: #007BFF;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px; /* Rounded corners for the button */
+    transition: background-color 0.3s; /* Smooth transition for background color */
+}
+
+.back-button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+/* Section Styling */
+section {
+    width: 100%; /* Full width */
+    text-align: center; /* Center text */
+    margin: 40px 0; /* Space between sections */
+}
+
+section h2 {
+    margin: 0; /* Reset margin */
+    padding: 0; /* Reset padding */
+}
+
+section p {
+    font-size: 18px; /* Increase font size for readability */
+    margin: 10px 0; /* Space between paragraphs */
+}
+
+section img {
+    display: block; /* Block element for proper centering */
+    margin: 0 auto; /* Center the image */
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    body {
+        overflow: auto; /* Enable scrolling */
+    }
+
+    nav {
+        flex-direction: column; /* Stack items vertically on small screens */
+        align-items: flex-end; /* Align to the right */
+    }
+
+    nav button, nav a {
+        margin: 5px 0; /* Adjust spacing between items */
+    }
+
+    main {
+        padding: 10rem 2rem; /* Adjust padding for smaller screens */
+    }
+}
+
+/* Notification Banner Styling */
+.notification {
+    background-color: #28a745; /* Green background */
+    color: white; /* Text color */
+    padding: 15px; /* Padding around the text */
+    border-radius: 5px; /* Rounded corners */
+    position: fixed; /* Fixed position */
+    top: 20px; /* Distance from the top */
+    left: 50%; /* Center horizontally */
+    transform: translateX(-50%); /* Adjust for perfect centering */
+    z-index: 1000; /* Ensure it appears above other content */
+    transition: opacity 0.5s; /* Smooth transition for visibility */
+    opacity: 0; /* Initial hidden state */
+}
+
+.notification.hidden {
+    display: none; /* Hide when not needed */
+}
+
+.notification:not(.hidden) {
+    opacity: 1; /* Show when needed */
+}
+
+.btn {
+    padding: 10px 20px; /* Padding for height */
+    background-color: #007BFF; /* Button background color */
+    color: #fff; /* Button text color */
+    border: none; /* No border */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor */
+    font-size: 16px; /* Font size */
+    transition: background-color 0.3s; /* Smooth transition for background color */
+    margin: 20px 2px; /* Added bottom margin for spacing */
+}
+
+.btn:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+.continue {
+    margin-top: 40px; /* Space between h2 and button */
+    padding: 20px 30px; /* Increased top and bottom padding for height */
+    background-color: #007BFF; /* Button background color */
+    color: #fff; /* Button text color */
+    border: none; /* No border */
+    border-radius: 30px; /* Very rounded corners */
+    cursor: pointer; /* Pointer cursor */
+    font-size: 18px; /* Font size */
+    transition: background-color 0.3s; /* Smooth transition for background color */
+}
+
+.continue:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+.contact-input {
+    width: 150%; /* Make it full width, or set to a specific width */
+    height: 20px; /* Adjust height as needed */
+    padding: 10px; /* Add padding for better spacing */
+    margin: 0 20px; /* Left and right margin */
+    font-size: 16px; /* Increase font size for readability */
+    border: 1px solid #ccc; /* Border styling */
+    border-radius: 5px; /* Rounded corners */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional shadow */
+}
+
+.contact-email {
+    width: 150%; /* Make it full width, or set to a specific width */
+    height: 20px; /* Adjust height as needed */
+    padding: 10px; /* Add padding for better spacing */
+    margin: 0 20px; /* Left and right margin */
+    font-size: 16px; /* Increase font size for readability */
+    border: 1px solid #ccc; /* Border styling */
+    border-radius: 5px; /* Rounded corners */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional shadow */
+}
+
+.contact-message {
+    width: 100%; /* Make it full width, or set to a specific width */
+    height: 500px; /* Adjust height as needed */
+    padding: 10px; /* Add padding for better spacing */
+    margin: 0 20px; /* Left and right margin */
+    font-size: 16px; /* Increase font size for readability */
+    border: 1px solid #ccc; /* Border styling */
+    border-radius: 5px; /* Rounded corners */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional shadow */
+}
+
+.form-container {
+    display: flex;
+    justify-content: center; /* Center items horizontally */
+}

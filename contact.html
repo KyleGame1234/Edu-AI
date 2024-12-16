@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav id="navbar">
+        <button onclick="location.href='credits.html'">Credits</button>
+        <button onclick="location.href='about.html'">About Us</button>
+        <button onclick="location.href='contact.html'">Contact Us</button>
+    </nav>
+
+    <header></header>
+    <main>
+        <h1>Contact Us</h1>
+        <form id="contact-form">
+            <div class="form-container">
+                <label for="name">Name:</label><br>
+                <input type="text" id="name" name="name" class="contact-input" placeholder="Your Name" required><br>
+
+                <label for="email">Email:</label><br>
+                <input type="email" id="email" name="email" class="contact-email" placeholder="Email" required><br>
+            </div>
+
+            <h1></h1>
+
+            <label for="message">Message:</label><br>
+            <h3></h3>
+            <textarea id="message" name="message" class="contact-message" placeholder="Your Message..." required></textarea><br>
+
+            <button type="submit" class="back-button">Send</button>
+        </form>
+        <a href="index.html" class="back-button">Back to Home</a> <!-- Back to Home button -->
+        
+        <!-- Notification Banner -->
+        <div id="notification" class="notification hidden">Thank you for your message!</div>
+    </main>
+
+    <script>
+        document.getElementById('contact-form').onsubmit = function(e) {
+            e.preventDefault();
+            const notification = document.getElementById('notification');
+            notification.classList.remove('hidden');
+            setTimeout(() => {
+                notification.classList.add('hidden');
+            }, 5000); // Hide after 3 seconds
+            this.reset();
+        };
+    </script>
+</body>
+</html>
